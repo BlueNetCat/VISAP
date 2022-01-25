@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Test trawling</title>
+    <!-- Bootstrap core CSS (LATEST) -->
+    <link href="../lib/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../css/dashboard.css" rel="stylesheet">
+
+  </head>
+<body>
+
+<main>
+  <!-- Here goes the content -->
+</main>
+
+<!-- Bootstrap -->
+<script src="../lib/bootstrap.bundle.min.js"></script>
+<!-- Icons library -->
+<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+<!-- D3 library -->
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<!-- List library (only useful for search options?) -->
+<script src="../lib/list.min.js"></script>
+
+<!-- Scripts -->
+<script src="../data/palette.json"></script>
+
+
+
+
+<script type="module">
+
+// Import
+import startTrawling from '../js/trawling.js';
+
+// Testing inner html
+fetch("../html/" + "trawling.html")
+  .then(response => response.text())
+  .then(text => {
+    document.getElementsByTagName("main")[0].innerHTML = text;
+    startTrawling("../data/pesca_arrossegament_biomassa.json");
+
+    // Feather Icons
+    feather.replace()
+  });
+
+</script>
+
+</body>
+</html>

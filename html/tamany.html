@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Freqüència de talles</h1>
+</div>
+
+<div id="loader">
+  <p class="text-center"> Carregant les dades... </p>
+  <div class="loader mx-auto">
+  </div>
+</div>
+
+<div id="tamanyInterface" style="visibility: hidden">
+  <div id="interaction mx-auto">
+    <div class="row">
+      <div class="col">
+        <button id="addSpecies" class="btn btn-primary">Afegir espècie</button>
+        <button id="deleteSpecies" class="btn btn-primary">Esborrar l'última espècie afegida</button>
+      </div>
+    </div>
+
+
+    <div id="listSpecies">
+      <input class="search form-control" placeholder="Buscar espècie" />
+      <ul class="list" id="limheight"></ul>
+    </div>
+
+  </div>
+
+  <figure class="highcharts-figure">
+      <div id="tamanyContainer"></div>
+      <p class="highcharts-description">
+
+      </p>
+  </figure>
+  <div id="timeSliderContainer"></div>
+</div>

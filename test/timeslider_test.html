@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+      #timeSlider {
+        bottom: 2px;
+        width: 100%;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.18/"></script>
+    <script src="../js/timeSlider.js"></script>
+
+  </head>
+
+
+  <body>
+
+    <div id="timeSlider"></div>
+
+    <script>
+    //https://developers.arcgis.com/javascript/latest/sample-code/timeslider-filter/
+
+    var timeSlider = new TimeSliderArcGIS(undefined,undefined,undefined);
+    timeSlider.createTimeSlider();
+/*
+    const start = new Date(2019, 4, 1);
+    const end = new Date(2020, 6, 30);
+    const callBackTimeChange = (startTime, endTime) => console.log(startTime + ", " + endTime);
+
+    require([
+      "esri/widgets/TimeSlider"
+    ], function(TimeSlider) {
+
+      // create a new time slider widget
+      // set other properties when the layer view is loaded
+      // by default timeSlider.mode is "time-window" - shows
+      // data falls within time range
+      const timeSlider = new TimeSlider({
+        container: "timeSlider",
+        playRate: 50,
+        stops: {
+          interval: {
+            value: 0.1,
+            unit: "hours"
+          }
+        }
+      });
+
+        // set time slider's full extent to
+        // 5/25/5019 - until end date of layer's fullTimeExtent
+        timeSlider.fullTimeExtent = {
+          start: start,
+          end: end
+        };
+
+        // Values property is set so that timeslider
+        // widget show the first day. We are setting
+        // the thumbs positions.
+        //timeSlider.values = [start, end];
+
+        // watch for time slider timeExtent change
+        timeSlider.watch("timeExtent", function() {
+          // only show what happened up until the end of
+          // timeSlider's current time extent.
+          //time <= timeSlider.timeExtent.end.getTime();
+
+          callBackTimeChange(timeSlider.timeExtent.start.toLocaleDateString(), timeSlider.timeExtent.end.toLocaleDateString());
+          // now gray out what happened before the time slider's current
+          // timeExtent... leaving footprint of what already happened
+          //timeSlider.timeExtent;
+
+          // Format to string
+          //timeSlider.timeExtent.start.toLocaleDateString();
+          //timeSlider.timeExtent.end.toLocaleDateString();
+        });
+    });*/
+
+    </script>
+  </body>
+</html>

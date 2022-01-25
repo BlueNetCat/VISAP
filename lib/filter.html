@@ -1,0 +1,18 @@
+<!-- Filter -->
+<div id="filterContainer">
+  <!-- Selected list -->
+  <div id="selSpeciesEl">
+    <div class="list"></div>
+  </div>
+  <!-- Unselected list -->
+  <div id="speciesEl">
+    <input class="search btn-sm btn-outline-light" onclick="event.stopPropagation();" placeholder="Search" />
+    <button class="sort btn btn-sm btn-outline-light" onclick="event.stopPropagation();" data-sort="name">
+      Ordenar per nom
+    </button>
+    <button id="selectAll" onclick="event.stopPropagation();" class="btn btn-sm btn-outline-light"> Seleccionar-ho tot </button>
+    <button id="deselectAll" onclick="event.stopPropagation();" class="btn btn-sm btn-outline-light"> Desseleccionar-ho tot </button>
+    <button id="closeGUI" onclick="event.stopPropagation();" class="btn btn-sm btn-outline-primary"> Tancar </button>
+    <div class="list col-xs-3"></div>
+  </div>
+</div>

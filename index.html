@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.80.0">
+    <title>VISAP dashboard</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Openlayers library -->
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css">
+    
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VPF9P35WTN"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-VPF9P35WTN');
+    </script>
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+
+  </head>
+  <body>
+
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <!--a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">VISAP - Servei d'Assessorament Pesquer</a-->
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">VISAP - Servei d'Assessorament Pesquer</a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!--input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"-->
+  <ul class="navbar-nav px-3 form-control-dark">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" target="_blank" href="https://github.com/BlueNetCat/BlueNetCat.github.io/tree/main/VISAP">Repositori</a>
+    </li>
+  </ul>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" w3-include-html="dashboard.html" onclick="clickSidebarMenu(event)" aria-current="page" href="#">
+              <span data-feather="home"></span>
+              Inici
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" w3-include-html="trawling.html" onclick="clickSidebarMenu(event)" href="#">
+              <span data-feather="anchor"></span>
+              Pesca d'arrosegament
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" w3-include-html="tamany.html" onclick="clickSidebarMenu(event)" href="#">
+              <span data-feather="bar-chart-2"></span>
+              Freqüència de talles
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" w3-include-html="map.html" onclick="clickSidebarMenu(event)" href="#">
+              <span data-feather="map-pin"></span>
+              Mapa de mostreig
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled"  onclick="clickSidebarMenu(event)" href="#" style="color: gray">
+              <span data-feather="circle"></span>
+              Pesca d'encerclament
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" onclick="clickSidebarMenu(event)" href="#" style="color: gray">
+              <span data-feather="target"></span>
+              Pesca sonsera
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" onclick="clickSidebarMenu(event)" href="#" style="color: gray">
+              <span data-feather="minimize"></span>
+              Pesca de pop roquer
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" onclick="clickSidebarMenu(event)" href="#" style="color: gray">
+              <span data-feather="activity"></span>
+              Mapa d'esforç, rendiment econòmic i biomassa
+            </a>
+          </li>
+        </ul>
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Altres enllaços</span>
+          <!--a class="link-secondary" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a-->
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" rel="noreferrer noopener" href="http://agricultura.gencat.cat/ca/departament/dar_plans_programes_sectorials/politica-maritima/icatmar/">
+              <span data-feather="file-text"></span>
+              ICATMAR
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" target="_blank" rel="noreferrer noopener" href="http://agricultura.gencat.cat/web/.content/08-pesca/politica-maritima/enllacos-documents/fitxers-binaris/EstatPesqueresCatalunya_2019_Part1_ICATMAR_090720.pdf">
+              <span data-feather="file-text"></span>
+              Informe Pesca 2019
+            </a>
+          </li>
+        </ul>
+        <!--h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Saved reports</span>
+          <a class="link-secondary" href="#" aria-label="Add a new report">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Current month
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Last quarter
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Social engagement
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Year-end sale
+            </a>
+          </li>
+        </ul-->
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <!-- Here goes the content -->
+    </main>
+  </div>
+</div>
+
+      <!-- Bootstrap -->
+      <script src="lib/bootstrap.bundle.min.js"></script>
+      <!-- Icons library -->
+      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script>
+      <!-- Chart libary -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
+      <!-- D3 library -->
+      <script src="https://d3js.org/d3.v6.min.js"></script>
+      <!-- List library (only useful for search options?) -->
+      <script src="lib/list.min.js"></script>
+      <!-- Color palette -->
+      <script src="data/palette.json"></script>
+      <!-- WKB converter https://github.com/cschwarz/wkx -->
+      <script src="lib/wkx.js"></script>
+      <!-- Highcharts https://www.highcharts.com/demo/area-basic-->
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+      <script src="https://code.highcharts.com/modules/export-data.js"></script>
+      <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+      <!-- Timeslider //https://developers.arcgis.com/javascript/latest/sample-code/timeslider-filter/ -->
+      <link rel="stylesheet" href="https://js.arcgis.com/4.18/esri/themes/light-blue/main.css" />
+      <script src="https://js.arcgis.com/4.18/"></script>
+      <script src="./js/TimeSliderArcGIS.js"></script>
+
+      <!-- Custom styles for this template -->
+      <link href="css/dashboard.css" rel="stylesheet">
+
+      <script type="module">
+
+      // Import inner html scripts
+      import startTrawling from './js/trawling.js';
+      import startDashboard from './js/dashboard.js';
+      import startMap from './js/map.js';
+      import startTamany from './js/tamany.js';
+
+      // Server connection to fetch directly static files if server is off
+      window.serverConnection = false; // Assume that server is on
+
+      // TESTING
+      // Testing inner html
+  /*  fetch("html/" + "map.html")
+      .then(response => response.text())
+      .then(text => {
+        document.getElementsByTagName("main")[0].innerHTML = text;
+        startMap();
+        // Reload missing icons from new HTML
+        feather.replace();
+      });*/
+    /*fetch("html/" + "trawling.html")
+      .then(response => response.text())
+      .then(text => {
+        document.getElementsByTagName("main")[0].innerHTML = text;
+        startTrawling();
+        // Reload missing icons from new HTML
+        feather.replace();
+      });*/
+      /*fetch("html/" + "tamany.html")
+        .then(response => response.text())
+        .then(text => {
+          document.getElementsByTagName("main")[0].innerHTML = text;
+          startTamany();
+          // Reload missing icons from new HTML
+          feather.replace();
+        });*/
+      fetch("html/" + "dashboard.html")
+        .then(response => response.text())
+        .then(text => {
+          document.getElementsByTagName("main")[0].innerHTML = text;
+          //startDashboard();
+          // Reload missing icons from new HTML
+          feather.replace();
+        });
+
+
+        // When clicking a sidebarMenu
+        // Removes the inner html and fills it with the appropiate content
+        const clickSidebarMenu = (event) => {
+          let parentEl = document.getElementById("sidebarMenu");
+          parentEl.getElementsByClassName("active")[0].className = "nav-link"; // Remove active class
+          event.target.className += " active";
+          document.getElementsByTagName("main")[0].innerHTML = []; // TODO instead of destructive, store or hide HTML somewhere
+
+          let htmlFileToLoad = event.target.getAttribute("w3-include-html");
+
+          // Fetch html
+          fetch("html/" + event.target.getAttribute("w3-include-html"))
+            .then(response => response.text())
+            .then(text => {
+              document.getElementsByTagName("main")[0].innerHTML = text;
+              // Depening on the HTML, start one or the other js
+              switch (htmlFileToLoad){
+                case "trawling.html":
+                  startTrawling();
+                  break;
+                case "dashboard.html":
+                  startDashboard();
+                  break;
+                case "map.html":
+                  startMap();
+                  break;
+                case "tamany.html":
+                  startTamany();
+                  break;
+              }
+              // Reload missing icons from new HTML
+              feather.replace();
+
+            });
+        }
+
+        // Expose onclick events
+        window.clickSidebarMenu = clickSidebarMenu;
+
+      </script>
+
+
+  </body>
+</html>
