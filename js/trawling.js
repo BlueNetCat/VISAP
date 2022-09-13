@@ -46,48 +46,48 @@ function prepDataPortBiomass(inData){
 	// Iterate over all rows
 	for (let i = 0; i<inData.length; i++){
 		let item = inData[i];
-		let zonaPort = item.ZonaPort;
-		let nomPort = item.NomPort;
-		let nomEspecie = item.NomEspecie;
-		let nomComu = item.NomCatala || item.NomComu || item.NomEspecie;
-		let classCaptura = item.ClassificacioCaptura;
-		let biomass = item.Biomassa_Kg_Km2;
+		let portArea = item.PortArea;
+		let portName = item.PortName;
+		let scientificName = item.ScientificName;
+		let catalanName = item.CatalanName || item.ScientificName;
+		let classification = item.Classification;
+		let biomass = item.Biomass_Kg_Km2;
 
 		if (biomass < 1) // Do not display items with little biomass
 			continue;
 
 		// Create ZonaPort level if it does not exist
-		if (outData.children.find(child => child.name === zonaPort) === undefined)
-			outData.children.push({"name": zonaPort, "children": [], "species": zonaPort});
+		if (outData.children.find(child => child.name === portArea) === undefined)
+			outData.children.push({"name": portArea, "children": [], "species": portArea});
 
-		let zonaPortIndex = outData.children.findIndex(child => child.name === zonaPort)
+		let portAreaIndex = outData.children.findIndex(child => child.name === portArea)
 		// Create Port level if it does not exist
-		let zonaChilds = outData.children[zonaPortIndex].children;
-		if (zonaChilds.find(child => child.name === nomPort) === undefined)
-			outData.children[zonaPortIndex].children.push({"name": nomPort, "children": [], "species": nomPort});
+		let areaChilds = outData.children[portAreaIndex].children;
+		if (areaChilds.find(child => child.name === portName) === undefined)
+			outData.children[portAreaIndex].children.push({"name": portName, "children": [], "species": portName});
 
-		let portIndex = outData.children[zonaPortIndex].children.findIndex(child => child.name === nomPort)
+		let portIndex = outData.children[portAreaIndex].children.findIndex(child => child.name === portName)
 		// Create category level (Comercial, Rebuig, Restes)
-		let portChilds = outData.children[zonaPortIndex].children[portIndex].children;
-		if (portChilds.find(child => child.name === classCaptura) === undefined)
-			outData.children[zonaPortIndex].children[portIndex].children.push({"name": classCaptura, "children": [], "species": classCaptura});
+		let portChilds = outData.children[portAreaIndex].children[portIndex].children;
+		if (portChilds.find(child => child.name === classification) === undefined)
+			outData.children[portAreaIndex].children[portIndex].children.push({"name": classification, "children": [], "species": classification});
 
-		let classIndex =  outData.children[zonaPortIndex].children[portIndex].children.findIndex(child => child.name === classCaptura)
+		let classIndex =  outData.children[portAreaIndex].children[portIndex].children.findIndex(child => child.name === classification)
 		// If biomass is very small, put to others
-		if ((biomass < 9 && classCaptura == "Comercial") || (biomass < 5 && classCaptura == "Rebuig")){
-			let altresIndex =  outData.children[zonaPortIndex].children[portIndex].children[classIndex].children.findIndex(child => child.name === "Altres");
+		if ((biomass < 9 && classification == "Comercial") || (biomass < 5 && classification == "Rebuig")){
+			let otherIndex =  outData.children[portAreaIndex].children[portIndex].children[classIndex].children.findIndex(child => child.name === "Altres");
 			// Define Altres group
-			if (altresIndex == -1) {
-				outData.children[zonaPortIndex].children[portIndex].children[classIndex].children.push({"name": "Altres", "children": [], "species": "Altres"});
-				altresIndex = outData.children[zonaPortIndex].children[portIndex].children[classIndex].children.length - 1;
+			if (otherIndex == -1) {
+				outData.children[portAreaIndex].children[portIndex].children[classIndex].children.push({"name": "Altres", "children": [], "species": "Altres"});
+				otherIndex = outData.children[portAreaIndex].children[portIndex].children[classIndex].children.length - 1;
 			}
 			// Assign to Altres
-			outData.children[zonaPortIndex].children[portIndex].children[classIndex].children[altresIndex].children.push({"name": nomComu, "value": biomass, "species": nomEspecie});
+			outData.children[portAreaIndex].children[portIndex].children[classIndex].children[otherIndex].children.push({"name": catalanName, "value": biomass, "species": scientificName});
 		}
 		// Biomass is bigger
 		else {
 			// Assign biomass value
-			outData.children[zonaPortIndex].children[portIndex].children[classIndex].children.push({"name": nomComu, "value": biomass, "species": nomEspecie});
+			outData.children[portAreaIndex].children[portIndex].children[classIndex].children.push({"name": catalanName, "value": biomass, "species": scientificName});
 		}
 	}
 
@@ -103,50 +103,49 @@ function prepDataYearBiomass(inData){
 
   // Iterate over all rows
 	for (let i = 0; i<inData.length; i++){
-    let item = inData[i];
-
-    let any = item.Any;
-		let estacio = item.Estacio;
-		let nomEspecie = item.NomEspecie;
-		let nomComu = item.NomComu || item.NomEspecie;
-		let classCaptura = item.ClassificacioCaptura;
-		let biomass = item.Biomassa_Kg_Km2;
+    	let item = inData[i];
+    	let year = item.Year;
+		let season = item.Season;
+		let scientificName = item.ScientificName;
+		let catalanName = item.CatalanName || item.ScientificName;
+		let classification = item.Classification;
+		let biomass = item.Biomass_Kg_Km2;
 
 		if (biomass < 1) // Do not display items with little biomass
 			continue;
 
     // Create Year level if it does not exist
-		if (outData.children.find(child => child.name === any) === undefined)
-			outData.children.push({"name": any, "children": [], "species": any});
+		if (outData.children.find(child => child.name === year) === undefined)
+			outData.children.push({"name": year, "children": [], "species": year});
 
-		let anyIndex = outData.children.findIndex(child => child.name === any)
+		let yearIndex = outData.children.findIndex(child => child.name === year)
 		// Create Estacio level if it does not exist
-    let anyChilds = outData.children[anyIndex].children;
-		if (anyChilds.find(child => child.name === estacio) === undefined)
-			outData.children[anyIndex].children.push({"name": estacio, "children": [], "species": estacio});
+    let yearChilds = outData.children[yearIndex].children;
+		if (yearChilds.find(child => child.name === season) === undefined)
+			outData.children[yearIndex].children.push({"name": season, "children": [], "species": season});
 
-		let estacioIndex = outData.children[anyIndex].children.findIndex(child => child.name === estacio)// TODO HERE NOW
+		let seasonIndex = outData.children[yearIndex].children.findIndex(child => child.name === season)// TODO HERE NOW
 		// Create category level (Comercial, Rebuig, Restes)
-		let estacioChilds = outData.children[anyIndex].children[estacioIndex].children;
-		if (estacioChilds.find(child => child.name === classCaptura) === undefined)
-			outData.children[anyIndex].children[estacioIndex].children.push({"name": classCaptura, "children": [], "species": classCaptura});
+		let seasonChilds = outData.children[yearIndex].children[seasonIndex].children;
+		if (seasonChilds.find(child => child.name === classification) === undefined)
+			outData.children[yearIndex].children[seasonIndex].children.push({"name": classification, "children": [], "species": classification});
 
-		let classIndex =  outData.children[anyIndex].children[estacioIndex].children.findIndex(child => child.name === classCaptura)
+		let classIndex =  outData.children[yearIndex].children[seasonIndex].children.findIndex(child => child.name === classification)
 		// If biomass is very small, put to others
-		if ((biomass < 7 && classCaptura == "Comercial") || (biomass < 4 && classCaptura == "Rebuig")){
-			let altresIndex =  outData.children[anyIndex].children[estacioIndex].children[classIndex].children.findIndex(child => child.name === "Altres");
+		if ((biomass < 7 && classification == "Comercial") || (biomass < 4 && classification == "Rebuig")){
+			let otherIndex =  outData.children[yearIndex].children[seasonIndex].children[classIndex].children.findIndex(child => child.name === "Altres");
 			// Define Altres group
-			if (altresIndex == -1) {
-				outData.children[anyIndex].children[estacioIndex].children[classIndex].children.push({"name": "Altres", "children": [], "species": "Altres"});
-				altresIndex = outData.children[anyIndex].children[estacioIndex].children[classIndex].children.length - 1;
+			if (otherIndex == -1) {
+				outData.children[yearIndex].children[seasonIndex].children[classIndex].children.push({"name": "Altres", "children": [], "species": "Altres"});
+				otherIndex = outData.children[yearIndex].children[seasonIndex].children[classIndex].children.length - 1;
 			}
 			// Assign to Altres
-			outData.children[anyIndex].children[estacioIndex].children[classIndex].children[altresIndex].children.push({"name": nomComu, "value": biomass, "species": nomEspecie});
+			outData.children[yearIndex].children[seasonIndex].children[classIndex].children[otherIndex].children.push({"name": catalanName, "value": biomass, "species": scientificName});
 		}
 		// Biomass is bigger
 		else {
 			// Assign biomass value
-			outData.children[anyIndex].children[estacioIndex].children[classIndex].children.push({"name": nomComu, "value": biomass, "species": nomEspecie});
+			outData.children[yearIndex].children[seasonIndex].children[classIndex].children.push({"name": catalanName, "value": biomass, "species": scientificName});
 		}
   }
 
