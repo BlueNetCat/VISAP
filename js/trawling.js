@@ -67,21 +67,21 @@ function prepDataPortBiomass(inData){
 			outData.children[portAreaIndex].children.push({"name": portName, "children": [], "species": portName});
 
 		let portIndex = outData.children[portAreaIndex].children.findIndex(child => child.name === portName)
-		// Create category level (Comercial, Rebuig, Restes)
+		// Create category level (Landed, Discarded, Restes)
 		let portChilds = outData.children[portAreaIndex].children[portIndex].children;
 		if (portChilds.find(child => child.name === classification) === undefined)
 			outData.children[portAreaIndex].children[portIndex].children.push({"name": classification, "children": [], "species": classification});
 
 		let classIndex =  outData.children[portAreaIndex].children[portIndex].children.findIndex(child => child.name === classification)
 		// If biomass is very small, put to others
-		if ((biomass < 9 && classification == "Comercial") || (biomass < 5 && classification == "Rebuig")){
-			let otherIndex =  outData.children[portAreaIndex].children[portIndex].children[classIndex].children.findIndex(child => child.name === "Altres");
-			// Define Altres group
+		if ((biomass < 9 && classification == "Landed") || (biomass < 5 && classification == "Discarded")){
+			let otherIndex =  outData.children[portAreaIndex].children[portIndex].children[classIndex].children.findIndex(child => child.name === "Other");
+			// Define Other group
 			if (otherIndex == -1) {
-				outData.children[portAreaIndex].children[portIndex].children[classIndex].children.push({"name": "Altres", "children": [], "species": "Altres"});
+				outData.children[portAreaIndex].children[portIndex].children[classIndex].children.push({"name": "Other", "children": [], "species": "Other"});
 				otherIndex = outData.children[portAreaIndex].children[portIndex].children[classIndex].children.length - 1;
 			}
-			// Assign to Altres
+			// Assign to Other
 			outData.children[portAreaIndex].children[portIndex].children[classIndex].children[otherIndex].children.push({"name": catalanName, "value": biomass, "species": scientificName});
 		}
 		// Biomass is bigger
@@ -125,21 +125,21 @@ function prepDataYearBiomass(inData){
 			outData.children[yearIndex].children.push({"name": season, "children": [], "species": season});
 
 		let seasonIndex = outData.children[yearIndex].children.findIndex(child => child.name === season)// TODO HERE NOW
-		// Create category level (Comercial, Rebuig, Restes)
+		// Create category level (Landed, Discarded, Restes)
 		let seasonChilds = outData.children[yearIndex].children[seasonIndex].children;
 		if (seasonChilds.find(child => child.name === classification) === undefined)
 			outData.children[yearIndex].children[seasonIndex].children.push({"name": classification, "children": [], "species": classification});
 
 		let classIndex =  outData.children[yearIndex].children[seasonIndex].children.findIndex(child => child.name === classification)
 		// If biomass is very small, put to others
-		if ((biomass < 7 && classification == "Comercial") || (biomass < 4 && classification == "Rebuig")){
-			let otherIndex =  outData.children[yearIndex].children[seasonIndex].children[classIndex].children.findIndex(child => child.name === "Altres");
-			// Define Altres group
+		if ((biomass < 7 && classification == "Landed") || (biomass < 4 && classification == "Discarded")){
+			let otherIndex =  outData.children[yearIndex].children[seasonIndex].children[classIndex].children.findIndex(child => child.name === "Other");
+			// Define Other group
 			if (otherIndex == -1) {
-				outData.children[yearIndex].children[seasonIndex].children[classIndex].children.push({"name": "Altres", "children": [], "species": "Altres"});
+				outData.children[yearIndex].children[seasonIndex].children[classIndex].children.push({"name": "Other", "children": [], "species": "Other"});
 				otherIndex = outData.children[yearIndex].children[seasonIndex].children[classIndex].children.length - 1;
 			}
-			// Assign to Altres
+			// Assign to Other
 			outData.children[yearIndex].children[seasonIndex].children[classIndex].children[otherIndex].children.push({"name": catalanName, "value": biomass, "species": scientificName});
 		}
 		// Biomass is bigger
