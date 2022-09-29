@@ -165,7 +165,7 @@ const createSearchList = (inData, speciesArray, listEl) => {
   let values = [];
   speciesArray.forEach(item => {
     // Get color from palette
-    let colorItem = palette[item] === undefined ? "rgb(" + palette.Altres.color + ")" : "rgb(" + palette[item].color + ")";
+    let colorItem = palette[item] === undefined ? "rgb(" + palette.Other.color + ")" : "rgb(" + palette[item].color + ")";
     // Get common name
     let commonName = "";
     // Find common name in data (not optimal)
@@ -248,7 +248,7 @@ const getDataForSpecieX = (inData, inSpecies) => {
 
   // Add common name if exists
   let seriesName = dataSelSpecies[0].NomComu === null ? inSpecies : (inSpecies + " ("+ dataSelSpecies[0].NomComu +")");
-  let seriesColor = palette[inSpecies] === undefined ? "rgb(" + palette.Altres.color + ")" : "rgb(" + palette[inSpecies].color + ")";
+  let seriesColor = palette[inSpecies] === undefined ? "rgb(" + palette.Other.color + ")" : "rgb(" + palette[inSpecies].color + ")";
   let graphSpecies = {name: seriesName, data: dataHC, color: seriesColor };
   return graphSpecies;
 }
