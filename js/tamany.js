@@ -114,7 +114,7 @@ const createChart = (serieSpecies) => {
     },
     yAxis: {
         title: {
-            text: 'Abundància (Número d\'individus per km2)'//'Nuclear weapon states'
+            text: 'Abundance (Number of individuals per km2)'//'Nuclear weapon states'
         },
         labels: {
             formatter: function () {
@@ -125,7 +125,7 @@ const createChart = (serieSpecies) => {
     tooltip: {
         //pointFormat: 'Hi ha {point.y} que fan {point.x} cm de l\'espècie {series.name}'//'{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
         formatter: function() {
-          return 'Abundància: ' + parseInt(this.y) + ' individus de ' + this.x/10 + " cm per km2."//  + 'individus de ' + this.x + ' cm d\'un total de '  + ' ' + series.name;
+          return 'Abundance: ' + parseInt(this.y) + ' individuals of ' + this.x/10 + " cm per km2."//  + 'individus de ' + this.x + ' cm d\'un total de '  + ' ' + series.name;
         }
     },
     loading: {

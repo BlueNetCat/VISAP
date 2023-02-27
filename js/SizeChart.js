@@ -8,7 +8,7 @@ class SizeChart {
     // Create HTML pop-up (ideally with a close button etc...)
     this.popupEl = document.createElement('div');
     this.popupEl.classList.add('ol-popup');
-    this.popupEl.innerHTML = '<h5>Freqüència de talles</h5>'+
+    this.popupEl.innerHTML = '<h5>Length frequency</h5>'+
                               '<a id="popup-closer" class="ol-popup-closer"></a>'+
                               '<div id="popup-content" style="display: inline-flex"></div>';
     this.popupEl.style.left = "33%";
@@ -45,17 +45,17 @@ class SizeChart {
     // Filter if port or year-season are specified
     // For ports (yearOrZone is numeric for seasonal pie chart)
     if (zoneOrYear === undefined){
-      this.popupEl.children[0].innerText = "Freqüència de talles (Total del projecte)";
+      this.popupEl.children[0].innerText = "Length frequency (total project)";
     } else if (isNaN(parseInt(zoneOrYear))){
       filteredData = dataFromServer.filter((item) => item.ZonaPort == zoneOrYear);
       // Change popup title
-      this.popupEl.children[0].innerText = "Freqüència de talles (Zona " + zoneOrYear +")";
+      this.popupEl.children[0].innerText = "Length frequency (Area " + zoneOrYear +")";
     } // For year-season
     else {
       filteredData = dataFromServer.filter((item) => item.Any == parseInt(zoneOrYear));
       filteredData = filteredData.filter((item) => item.Estacio == portOrSeason);
       // Change popup title
-      this.popupEl.children[0].innerText = "Freqüència de talles (" + portOrSeason +", "+ zoneOrYear +")";
+      this.popupEl.children[0].innerText = "Length frequency (" + portOrSeason +", "+ zoneOrYear +")";
     }
 
     // If there is no data...
@@ -135,7 +135,7 @@ class SizeChart {
       },
       yAxis: {
           title: {
-              text: 'Abundància (Número d\'individus per km2)'//'Nuclear weapon states'
+              text: 'Abundance (Number of individuals per km2)'//'Nuclear weapon states'
           },
           labels: {
               formatter: function () {
@@ -146,7 +146,7 @@ class SizeChart {
       tooltip: {
           //pointFormat: 'Hi ha {point.y} que fan {point.x} cm de l\'espècie {series.name}'//'{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
           formatter: function() {
-            return 'Abundància: ' + parseInt(this.y) + ' individus de ' + this.x/10 + " cm per km2."//  + 'individus de ' + this.x + ' cm d\'un total de '  + ' ' + series.name;
+            return 'Abundance: ' + parseInt(this.y) + ' individuals of ' + this.x/10 + " cm per km2."//  + 'individus de ' + this.x + ' cm d\'un total de '  + ' ' + series.name;
           }
       },
       loading: {
@@ -187,7 +187,7 @@ class SizeChart {
 		}
 
     // Categories (sizes)
-    let categories = this.getUnique(dataSelSpecies, "Talla"); // Important to create X axis
+    let categories = this.getUnique(dataSelSpecies, "Length"); // Important to create X axis
     categories.forEach((cat, index) => categories[index] = parseFloat(cat)); // Transform into numbers
     categories.sort((a, b) => a - b); // Sort
     // Abundance per size
