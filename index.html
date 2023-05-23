@@ -51,6 +51,29 @@
   </head>
   <body>
 
+
+    <!-- App no longer in use -->
+    <div id="nolongerindev" style="
+      position: absolute;
+      margin: auto;
+      z-index: 100;
+      top: 50%;
+      left:50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 4px black;
+
+      display: flex;
+      flex-direction: column;">
+      <p>Aquesta aplicació s'ha deixat de desenvolupar i mantenir en aquest lloc. L'aplicació continua en desenvolupament a <a href="https://icatmar.cat/visors/visor-pesquer/">el visor d'ICATMAR</a></p>
+      <p>Esta aplicación ha dejado de ser desarrollada y mantenida en este sitio web. La aplicación continua en desarrollo en <a href="https://icatmar.cat/es/visores/visor-de-pesca/">el visor de ICATMAR</a>.</p>
+      <p>This app is no longer mantained here. Please go to <a href="https://icatmar.cat/en/viewers/fishery-viewer/">ICATMAR's website</a> for its most recent version.</p>
+      <button onclick="closeNolongerindev(event)">Close</button>
+    </div>
+
+
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <!--a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">VISAP - Servei d'Assessorament Pesquer</a-->
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">VISAP - Fisheries Advisory Service</a>
@@ -245,6 +268,9 @@
           // Reload missing icons from new HTML
           feather.replace();
         });*/
+
+
+
       fetch("html/" + "dashboard.html")
         .then(response => response.text())
         .then(text => {
@@ -253,6 +279,12 @@
           // Reload missing icons from new HTML
           feather.replace();
         });
+
+
+        const closeNolongerindev = (e) => {
+          e.target.parentElement.style.display = 'none';
+        }
+        
 
 
         // When clicking a sidebarMenu
@@ -293,6 +325,7 @@
 
         // Expose onclick events
         window.clickSidebarMenu = clickSidebarMenu;
+        window.closeNolongerindev = closeNolongerindev;
 
       </script>
 
